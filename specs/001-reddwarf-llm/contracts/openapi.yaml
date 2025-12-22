@@ -1,0 +1,557 @@
+openapi: 3.0.3
+info:
+  title: Red Dwarf Tiny LLM API
+  description: |
+    REST API for Red Dwarf themed tiny LLM inference with quote bookending.
+    
+    This API provides text generation with automatic Red Dwarf quote formatting.
+    All responses are bookended with randomly selected quotes from the series.
+    
+    **Entertainment First**: Responses may include references to Lister's curry obsession,
+    Rimmer's neuroses, Cat's vanity, or Holly's declining IQ. This is by design. Smeg off.
+  version: 0.1.0
+  contact:
+    name: Red Dwarf LLM Community
+    url: https://github.com/abuxton/reddwarf-llm
+  license:
+    name: DBAD (Don't Be A Dick)
+    url: https://dbad-license.org/
+
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local development server
+  - url: http://localhost:8000/api/v1
+    description: Docker container (default port)
+
+tags:
+  - name: inference
+    description: Text generation operations
+  - name: models
+    description: Model management and status
+  - name: quotes
+    description: Red Dwarf quotes database
+  - name: health
+    description: Service health checks
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      description: Returns service health status and model availability
+      operationId: getHealth
+      tags:
+        - health
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: "healthy"
+                model_loaded: true
+                model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+                uptime_seconds: 3600
+        '503':
+          description: Service unavailable (model not loaded)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /infer:
+    post:
+      summary: Generate text with Red Dwarf quotes
+      description: |
+        Generate text from a prompt, bookended with Red Dwarf quotes.
+        
+        The response includes:
+        - Opening quote (randomly selected)
+        - Generated text from the model
+        - Closing quote (randomly selected, different from opening)
+        
+        Quotes are tracked per session to avoid repetition within 20 requests.
+      operationId: generateInference
+      tags:
+        - inference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InferenceRequest'
+            examples:
+              simple:
+                summary: Simple prompt
+                value:
+                  prompt: "What is the best way to navigate through deep space?"
+              advanced:
+                summary: Advanced with parameters
+                value:
+                  prompt: "Explain quantum mechanics"
+                  max_tokens: 200
+                  temperature: 0.9
+                  session_id: "550e8400-e29b-41d4-a716-446655440000"
+      responses:
+        '200':
+          description: Successful inference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InferenceResponse'
+              example:
+                request_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                formatted_response: "Everybody's dead, Dave.\n\nQuantum mechanics describes the behavior of matter and energy at atomic scales...\n\nSmoke me a kipper, I'll be back for breakfast!"
+                opening_quote:
+                  id: 1
+                  text: "Everybody's dead, Dave."
+                  character: "Holly"
+                  episode: "The End"
+                  season: 1
+                closing_quote:
+                  id: 42
+                  text: "Smoke me a kipper, I'll be back for breakfast!"
+                  character: "Ace Rimmer"
+                  episode: "Dimension Jump"
+                  season: 4
+                metadata:
+                  model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+                  inference_time_ms: 1250.5
+                  tokens_generated: 78
+                  tokens_per_second: 62.4
+                  finish_reason: "eos_token"
+        '400':
+          description: Invalid request (validation error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error:
+                  code: "INVALID_REQUEST"
+                  message: "Prompt length must be between 1 and 2048 characters"
+                  details:
+                    field: "prompt"
+                    provided_length: 0
+        '503':
+          description: Model not loaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: Inference timeout (exceeded 10 second limit)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '507':
+          description: Insufficient memory
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /models:
+    get:
+      summary: List available models
+      description: Returns information about supported models and their resource requirements
+      operationId: listModels
+      tags:
+        - models
+      responses:
+        '200':
+          description: List of available models
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelsListResponse'
+              example:
+                models:
+                  - model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+                    parameters: "1.1B"
+                    license: "Apache-2.0"
+                    quantization_options: ["none", "4bit", "8bit"]
+                    memory_requirements:
+                      none: 4400
+                      4bit: 600
+                      8bit: 1200
+                    estimated_inference_time_ms: 1000
+                  - model_id: "microsoft/phi-2"
+                    parameters: "2.7B"
+                    license: "MIT"
+                    quantization_options: ["none", "4bit", "8bit"]
+                    memory_requirements:
+                      none: 10800
+                      4bit: 1500
+                      8bit: 3000
+                    estimated_inference_time_ms: 1500
+
+  /models/current:
+    get:
+      summary: Get current model status
+      description: Returns information about the currently loaded model
+      operationId: getCurrentModel
+      tags:
+        - models
+      responses:
+        '200':
+          description: Current model information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentModelResponse'
+              example:
+                model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+                quantization: "4bit"
+                device: "cuda"
+                memory_usage_mb: 620
+                load_time_ms: 15300
+                loaded_at: "2025-12-22T14:30:00Z"
+        '503':
+          description: No model loaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /quotes:
+    get:
+      summary: Get random Red Dwarf quote
+      description: Returns a random quote from the database (for testing/preview)
+      operationId: getRandomQuote
+      tags:
+        - quotes
+      parameters:
+        - name: character
+          in: query
+          description: Filter by character name
+          required: false
+          schema:
+            type: string
+            enum: [Holly, Lister, Rimmer, Cat, Kryten, Ace Rimmer]
+      responses:
+        '200':
+          description: Random quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+              example:
+                id: 7
+                text: "I'm going to eat you little fishie!"
+                character: "Cat"
+                episode: "Confidence and Paranoia"
+                season: 1
+
+  /quotes/stats:
+    get:
+      summary: Get quote database statistics
+      description: Returns statistics about the quote database
+      operationId: getQuoteStats
+      tags:
+        - quotes
+      responses:
+        '200':
+          description: Quote statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteStatsResponse'
+              example:
+                total_quotes: 87
+                by_character:
+                  Holly: 23
+                  Lister: 18
+                  Rimmer: 15
+                  Cat: 12
+                  Kryten: 10
+                  Ace Rimmer: 5
+                  Other: 4
+                by_season:
+                  "1": 15
+                  "2": 12
+                  "3": 18
+                  "4": 10
+                  "5": 8
+                  "6": 7
+                  "7": 6
+                  "8": 5
+                  "10": 4
+                  "11": 2
+                  "12": 0
+
+components:
+  schemas:
+    InferenceRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          description: Input text to generate from
+          example: "What is the best curry recipe?"
+        max_tokens:
+          type: integer
+          minimum: 1
+          maximum: 2048
+          default: 512
+          description: Maximum tokens to generate
+        temperature:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 2.0
+          default: 0.7
+          description: Sampling temperature (0.0 = deterministic, higher = more random)
+        top_p:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          nullable: true
+          description: Nucleus sampling parameter
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 100
+          nullable: true
+          description: Top-k sampling parameter
+        do_sample:
+          type: boolean
+          default: true
+          description: Enable sampling vs greedy decoding
+        session_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: Session identifier for quote tracking (prevents quote repetition)
+
+    InferenceResponse:
+      type: object
+      required:
+        - request_id
+        - formatted_response
+        - opening_quote
+        - closing_quote
+        - metadata
+      properties:
+        request_id:
+          type: string
+          format: uuid
+          description: Unique identifier for this response
+        formatted_response:
+          type: string
+          description: Complete response with quotes bookended
+        opening_quote:
+          $ref: '#/components/schemas/Quote'
+        closing_quote:
+          $ref: '#/components/schemas/Quote'
+        metadata:
+          type: object
+          required:
+            - model_id
+            - inference_time_ms
+            - tokens_generated
+            - tokens_per_second
+            - finish_reason
+          properties:
+            model_id:
+              type: string
+              description: Model used for generation
+            inference_time_ms:
+              type: number
+              format: float
+              description: Generation duration in milliseconds
+            tokens_generated:
+              type: integer
+              description: Number of tokens in generated text
+            tokens_per_second:
+              type: number
+              format: float
+              description: Generation throughput
+            finish_reason:
+              type: string
+              enum: [length, eos_token, stop_sequence]
+              description: Why generation stopped
+
+    Quote:
+      type: object
+      required:
+        - id
+        - text
+        - character
+        - episode
+        - season
+      properties:
+        id:
+          type: integer
+          description: Unique quote identifier
+        text:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Quote text
+        character:
+          type: string
+          description: Character who said it
+        episode:
+          type: string
+          description: Episode name
+        season:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: Season number
+
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - model_loaded
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+          description: Service health status
+        model_loaded:
+          type: boolean
+          description: Whether a model is currently loaded
+        model_id:
+          type: string
+          nullable: true
+          description: Currently loaded model (null if none)
+        uptime_seconds:
+          type: integer
+          description: Service uptime in seconds
+
+    ModelsListResponse:
+      type: object
+      required:
+        - models
+      properties:
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelInfo'
+
+    ModelInfo:
+      type: object
+      required:
+        - model_id
+        - parameters
+        - license
+        - quantization_options
+        - memory_requirements
+        - estimated_inference_time_ms
+      properties:
+        model_id:
+          type: string
+          description: HuggingFace model identifier
+        parameters:
+          type: string
+          description: Number of parameters (e.g., "1.1B")
+        license:
+          type: string
+          description: Model license
+        quantization_options:
+          type: array
+          items:
+            type: string
+            enum: [none, 4bit, 8bit]
+        memory_requirements:
+          type: object
+          description: VRAM requirements in MB per quantization level
+          additionalProperties:
+            type: integer
+        estimated_inference_time_ms:
+          type: integer
+          description: Estimated time for 512 token generation (consumer GPU)
+
+    CurrentModelResponse:
+      type: object
+      required:
+        - model_id
+        - quantization
+        - device
+        - memory_usage_mb
+        - load_time_ms
+        - loaded_at
+      properties:
+        model_id:
+          type: string
+          description: Currently loaded model
+        quantization:
+          type: string
+          enum: [none, 4bit, 8bit]
+          description: Quantization level
+        device:
+          type: string
+          enum: [cuda, mps, cpu]
+          description: Compute device
+        memory_usage_mb:
+          type: number
+          format: float
+          description: Current memory usage
+        load_time_ms:
+          type: number
+          format: float
+          description: Time taken to load model
+        loaded_at:
+          type: string
+          format: date-time
+          description: When model was loaded (ISO 8601)
+
+    QuoteStatsResponse:
+      type: object
+      required:
+        - total_quotes
+        - by_character
+        - by_season
+      properties:
+        total_quotes:
+          type: integer
+          description: Total number of quotes in database
+        by_character:
+          type: object
+          description: Quote count per character
+          additionalProperties:
+            type: integer
+        by_season:
+          type: object
+          description: Quote count per season
+          additionalProperties:
+            type: integer
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              enum:
+                - INVALID_REQUEST
+                - MODEL_NOT_LOADED
+                - INFERENCE_FAILED
+                - INFERENCE_TIMEOUT
+                - INSUFFICIENT_MEMORY
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error message (may include Red Dwarf humor)
+            details:
+              type: object
+              nullable: true
+              description: Additional error context
+              additionalProperties: true
