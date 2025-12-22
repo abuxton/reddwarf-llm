@@ -6,9 +6,10 @@ CORE=${REPO_TOP}/common/mk/core.mk
 BIN_DIR=${REPO_TOP}/common/bin
 MK_DIR=${REPO_TOP}/common/mk
 
-all: help help-git
+all: help help-git help-specify
 
 -include ${MK_DIR}/git.mk
+-include ${MK_DIR}/specify.mk
 
 xargs: ## xargs helper for cross-platform compatibility
 	@if [ "$(shell uname)" = "Darwin" ]; then \
