@@ -11,14 +11,14 @@ Build a Python-based tiny LLM implementation supporting TinyLlama-1.1B and Phi-2
 
 ## Technical Context
 
-**Language/Version**: Python 3.10+  
-**Primary Dependencies**: PyTorch, Transformers (HuggingFace), FastAPI, Pydantic, bitsandbytes  
-**Storage**: Local file system (model weights from HuggingFace Hub, JSON/YAML for quotes database)  
-**Testing**: pytest, pytest-cov, pytest-asyncio, mypy for type checking  
+**Language/Version**: Python 3.10+
+**Primary Dependencies**: PyTorch, Transformers (HuggingFace), FastAPI, Pydantic, bitsandbytes
+**Storage**: Local file system (model weights from HuggingFace Hub, JSON/YAML for quotes database)
+**Testing**: pytest, pytest-cov, pytest-asyncio, mypy for type checking
 **Target Platform**: Linux/macOS with CUDA/Metal GPU support, Docker containers, VS Code devcontainers
-**Project Type**: Single project (Python package with CLI, library, and future API)  
-**Performance Goals**: <2s inference for 512-token prompts, <30s model loading, <8GB VRAM usage  
-**Constraints**: Consumer hardware friendly, offline-capable after initial model download, no external API dependencies  
+**Project Type**: Single project (Python package with CLI, library, and future API)
+**Performance Goals**: <2s inference for 512-token prompts, <30s model loading, <8GB VRAM usage
+**Constraints**: Consumer hardware friendly, offline-capable after initial model download, no external API dependencies
 **Scale/Scope**: Single-user interactive chat, ~10 core modules, 50+ Red Dwarf quotes, 80% test coverage
 
 ## Constitution Check
@@ -206,12 +206,12 @@ reddwarf-llm/
   - ModelConfig, InferenceRequest, InferenceResponse, Quote, QuoteDatabase, Session, PerformanceMetrics
   - Full type specifications, validation rules, relationships, state transitions
   - Testing strategy and serialization formats documented
-  
+
 - **Deliverable 2**: `contracts/` - API contracts defined
   - `openapi.yaml`: Complete OpenAPI 3.0 specification with 7 endpoints
   - `/health`, `/infer`, `/models`, `/models/current`, `/quotes`, `/quotes/stats`
   - Request/response schemas, error handling, examples
-  
+
 - **Deliverable 3**: `quickstart.md` - User onboarding documentation
   - Three setup paths: devcontainer, Docker, local Python
   - Configuration examples, common commands, troubleshooting
@@ -286,6 +286,6 @@ The implementation plan is complete. To proceed:
 4. **Test**: Maintain 80% coverage per test strategy in `data-model.md`
 5. **Document**: Use `quickstart.md` as template for README and user guides
 
-**Branch**: `001-reddwarf-llm` (already created)  
-**Artifacts Location**: `/specs/001-reddwarf-llm/`  
+**Branch**: `001-reddwarf-llm` (already created)
+**Artifacts Location**: `/specs/001-reddwarf-llm/`
 **Status**: ✅ PLAN COMPLETE - Ready for task generation

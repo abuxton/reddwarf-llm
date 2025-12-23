@@ -12,13 +12,18 @@ from reddwarf.quotes.database import Quote, QuoteDatabase
 
 @pytest.fixture
 def test_quotes() -> list[Quote]:
-    """Minimal set of test quotes."""
+    """Minimal set of test quotes (10+ required for validation)."""
     return [
         Quote(id=1, text="Test quote 1", character="Lister", episode="Test", season=1),
         Quote(id=2, text="Test quote 2", character="Rimmer", episode="Test", season=1),
         Quote(id=3, text="Test quote 3", character="Holly", episode="Test", season=1),
         Quote(id=4, text="Test quote 4", character="Cat", episode="Test", season=1),
         Quote(id=5, text="Test quote 5", character="Kryten", episode="Test", season=1),
+        Quote(id=6, text="Test quote 6", character="Lister", episode="Test", season=1),
+        Quote(id=7, text="Test quote 7", character="Rimmer", episode="Test", season=1),
+        Quote(id=8, text="Test quote 8", character="Holly", episode="Test", season=1),
+        Quote(id=9, text="Test quote 9", character="Cat", episode="Test", season=1),
+        Quote(id=10, text="Test quote 10", character="Kryten", episode="Test", season=1),
     ]
 
 

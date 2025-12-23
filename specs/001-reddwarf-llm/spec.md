@@ -1,8 +1,8 @@
 # Feature Specification: Red Dwarf Tiny LLM Implementation
 
-**Feature Branch**: `001-reddwarf-llm`  
-**Created**: 2025-12-22  
-**Status**: Draft  
+**Feature Branch**: `001-reddwarf-llm`
+**Created**: 2025-12-22
+**Status**: Draft
 **Input**: User description: "Build a tiny LLM implementation in Python with support for devcontainer implementation and usage as well as local docker container. The implementation will be used later to create an agent and integrated MCP server. Such that any information retrieved from the LLM will be bookended by quotes from Red Dwarf and the agent will take the persona of Holly."
 
 ## User Scenarios & Testing *(mandatory)*

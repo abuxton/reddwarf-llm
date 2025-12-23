@@ -31,5 +31,3 @@ jq: ## jq helper
 .PHONY: help
 help:  ## Show help messages for make targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(firstword $(CORE)) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
-
-

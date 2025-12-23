@@ -460,7 +460,7 @@ Foundational (Phase 2) ← CRITICAL BLOCKER
     │
     ├─→ User Story 2 (Phase 4)
     └─→ Additional Endpoints (Phase 9)
-    
+
     ↓ (after all user stories)
 Polish (Phase 10)
 ```
@@ -486,7 +486,7 @@ Polish (Phase 10)
 
 **Within Phase 1 (Setup)**: Tasks T003-T013 can all run in parallel (different files)
 
-**Within Phase 2 (Foundational)**: 
+**Within Phase 2 (Foundational)**:
 - Configuration tasks (T015-T017) parallel
 - Quote tasks (T018-T020, T024-T026) parallel
 - Model tasks (T027-T029) parallel

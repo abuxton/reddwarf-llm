@@ -1,7 +1,7 @@
 # Specification Quality Checklist: Red Dwarf Tiny LLM Implementation
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2025-12-22  
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2025-12-22
 **Feature**: [spec.md](../spec.md)
 
 ## Content Quality

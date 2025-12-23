@@ -78,7 +78,7 @@ def test_quote_database_get_by_character(test_quotes: list[Quote]) -> None:
     db = QuoteDatabase(quotes=test_quotes)
 
     lister_quotes = db.get_by_character("Lister")
-    assert len(lister_quotes) == 1
+    assert len(lister_quotes) == 2  # Now we have 2 Lister quotes (id 1 and 6)
     assert all(q.character == "Lister" for q in lister_quotes)
 
 

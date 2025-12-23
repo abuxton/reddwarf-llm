@@ -1,7 +1,7 @@
 # Phase 1: Data Model
 
-**Feature**: Red Dwarf Tiny LLM Implementation  
-**Date**: 2025-12-22  
+**Feature**: Red Dwarf Tiny LLM Implementation
+**Date**: 2025-12-22
 **Status**: Complete
 
 ## Overview
@@ -280,11 +280,11 @@ InferenceRequest (1) ──> InferenceEngine ──> InferenceResponse (1)
         │ tracks usage        │ contains
         ▼                     ▼
     used_quote_ids       Quote (many)
-        
+
 InferenceResponse includes:
   - opening_quote: Quote
   - closing_quote: Quote
-  
+
 PerformanceMetrics captured per InferenceResponse
 ```
 
@@ -335,7 +335,7 @@ class InferenceRequest(BaseModel):
     prompt: str = Field(..., min_length=1, max_length=2048)
     max_tokens: int = Field(512, ge=1, le=2048)
     temperature: float = Field(0.7, ge=0.0, le=2.0)
-    
+
     @validator("prompt")
     def prompt_not_empty(cls, v):
         if not v.strip():
@@ -390,7 +390,7 @@ class InferenceRequestAPI(BaseModel):
     prompt: str
     max_tokens: int = 512
     ...
-    
+
     def to_domain(self) -> InferenceRequest:
         """Convert API model to domain model"""
         return InferenceRequest(...)
@@ -399,7 +399,7 @@ class InferenceResponseAPI(BaseModel):
     request_id: str
     formatted_response: str
     ...
-    
+
     @classmethod
     def from_domain(cls, response: InferenceResponse) -> "InferenceResponseAPI":
         """Convert domain model to API model"""
@@ -421,10 +421,10 @@ def test_quote_selector_no_repeat():
     db = QuoteDatabase(quotes=[Quote(id=i, ...) for i in range(5)])
     selector = QuoteSelector(db)
     session = Session(session_id="test-123")
-    
+
     quotes = [selector.get_random_quote(session) for _ in range(5)]
     assert len(set(q.id for q in quotes)) == 5  # All unique
-    
+
     # After exhausting all quotes, should reset
     sixth_quote = selector.get_random_quote(session)
     assert sixth_quote.id in [0, 1, 2, 3, 4]
@@ -437,9 +437,9 @@ def test_end_to_end_inference_with_quotes():
     config = ModelConfig(model_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0", ...)
     engine = InferenceEngine(config=config)
     request = InferenceRequest(prompt="What's the route to Earth?")
-    
+
     response = engine.generate(request)
-    
+
     assert response.opening_quote is not None
     assert response.closing_quote is not None
     assert response.opening_quote.id != response.closing_quote.id
@@ -453,11 +453,11 @@ def test_api_request_validation():
     # Valid request
     valid = InferenceRequestAPI(prompt="Test prompt")
     assert valid.max_tokens == 512  # Default
-    
+
     # Invalid: prompt too long
     with pytest.raises(ValidationError):
         InferenceRequestAPI(prompt="x" * 2049)
-    
+
     # Invalid: temperature out of range
     with pytest.raises(ValidationError):
         InferenceRequestAPI(prompt="Test", temperature=3.0)

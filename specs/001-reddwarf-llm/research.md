@@ -1,7 +1,7 @@
 # Phase 0: Research & Technology Decisions
 
-**Feature**: Red Dwarf Tiny LLM Implementation  
-**Date**: 2025-12-22  
+**Feature**: Red Dwarf Tiny LLM Implementation
+**Date**: 2025-12-22
 **Status**: Complete
 
 ## Overview
@@ -357,7 +357,7 @@ class QuoteSelector:
     def __init__(self, database: QuoteDatabase):
         self._db = database
         self._used_ids: set[int] = set()
-    
+
     def get_random_quote(self) -> Quote:
         available = [q for q in self._db.quotes if q.id not in self._used_ids]
         if not available:
@@ -404,7 +404,7 @@ from datetime import datetime
 class StructuredLogger:
     def __init__(self, name: str):
         self.logger = logging.getLogger(name)
-    
+
     def log_inference(
         self,
         prompt_length: int,
@@ -433,7 +433,7 @@ class PerformanceMetrics:
     vram_mb: float
     ram_mb: float
     tokens_per_second: float
-    
+
     @staticmethod
     def capture() -> "PerformanceMetrics":
         if torch.cuda.is_available():

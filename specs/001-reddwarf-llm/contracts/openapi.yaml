@@ -3,10 +3,10 @@ info:
   title: Red Dwarf Tiny LLM API
   description: |
     REST API for Red Dwarf themed tiny LLM inference with quote bookending.
-    
+
     This API provides text generation with automatic Red Dwarf quote formatting.
     All responses are bookended with randomly selected quotes from the series.
-    
+
     **Entertainment First**: Responses may include references to Lister's curry obsession,
     Rimmer's neuroses, Cat's vanity, or Holly's declining IQ. This is by design. Smeg off.
   version: 0.1.0
@@ -65,12 +65,12 @@ paths:
       summary: Generate text with Red Dwarf quotes
       description: |
         Generate text from a prompt, bookended with Red Dwarf quotes.
-        
+
         The response includes:
         - Opening quote (randomly selected)
         - Generated text from the model
         - Closing quote (randomly selected, different from opening)
-        
+
         Quotes are tracked per session to avoid repetition within 20 requests.
       operationId: generateInference
       tags:

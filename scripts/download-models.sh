@@ -34,7 +34,7 @@ fi
 # Download models using HuggingFace CLI or Python
 for model in "${MODELS[@]}"; do
     echo "⬇️  Downloading $model..."
-    
+
     python3 -c "
 from huggingface_hub import snapshot_download
 import os
