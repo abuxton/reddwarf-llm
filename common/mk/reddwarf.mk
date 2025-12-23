@@ -1,11 +1,67 @@
-.PHONY: help-reddwarf test lint format run docker-build docker-run download-models clean
+# https://github.com/krisnova/Makefile/blob/main/Makefile
+# GitHub Specify: https://github.com/specify/specify
+
+-include .env
+
+REPO_TOP=$(shell git rev-parse --show-toplevel)
+MK_DIR=${REPO_TOP}/common/mk
+
+.PHONY: help-reddwarf setup venv test lint format run docker-build docker-run download-models clean
+
+setup:  ## Initial setup - Install deps, download models, prep environment
+	@echo "═══════════════════════════════════════════════════════════════"
+	@echo "  🚀 Red Dwarf Tiny LLM - Initial Setup"
+	@echo "  \"I'm going to eat you, little fishy...\""
+	@echo "═══════════════════════════════════════════════════════════════"
+	@echo ""
+	@echo "🐍 Step 0: Checking for virtual environment..."
+	@if [ -z "$$VIRTUAL_ENV" ]; then \
+		echo "⚠️  No virtual environment detected!"; \
+		echo "   Please create and activate a venv first:"; \
+		echo "   python3 -m venv .venv"; \
+		echo "   source .venv/bin/activate"; \
+		echo "   Then run 'make setup' again"; \
+		exit 1; \
+	fi
+	@echo "✅ Virtual environment active: $$VIRTUAL_ENV"
+	@echo ""
+	@echo "📦 Step 1: Installing Python dependencies..."
+	pip install -e '.[dev]'
+	@echo ""
+	@echo "🧠 Step 2: Downloading models from HuggingFace..."
+	@if [ -f scripts/download-models.sh ]; then \
+		bash scripts/download-models.sh; \
+	else \
+		echo "⚠️  Model download script not found - skipping for now"; \
+	fi
+	@echo ""
+	@echo "🪝 Step 3: Installing pre-commit hooks (optional)..."
+	@if command -v pre-commit >/dev/null 2>&1; then \
+		pre-commit install; \
+	else \
+		echo "⚠️  pre-commit not available - skipping hooks"; \
+	fi
+	@echo ""
+	@echo "✅ Setup complete! Ready to run:"
+	@echo "   - 'make test' to run tests"
+	@echo "   - 'make run' to start the FastAPI server"
+	@echo "   - 'make help-reddwarf' for all available commands"
+	@echo ""
+
+venv:  ## Create virtual environment
+	@echo "🐍 Creating virtual environment..."
+	python3 -m venv .venv
+	@echo "✅ Virtual environment created!"
+	@echo "   Activate it with: source .venv/bin/activate"
+	@echo "   Then run: make setup"
 
 help-reddwarf:  ## Show this help message - Red Dwarf style!
 	@echo "═══════════════════════════════════════════════════════════════"
 	@echo "  Red Dwarf Tiny LLM - Available Commands"
 	@echo "  \"Everybody's dead, Dave. Everybody's dead, Dave.\""
 	@echo "═══════════════════════════════════════════════════════════════"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
+# 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(firstword $(MK_DIR)/reddwarf.mk) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo ""
 
 test:  ## Run tests with coverage (Holly's IQ test equivalent)
