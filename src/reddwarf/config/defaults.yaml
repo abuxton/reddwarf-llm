@@ -1,0 +1,33 @@
+# Red Dwarf LLM Default Configuration
+# Override with environment variables: REDDWARF_*
+
+model:
+  model_id: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  quantization: "4bit"  # Options: "none", "4bit", "8bit"
+  device: "cuda"  # Options: "cuda", "mps", "cpu" (auto-detected if not specified)
+  max_memory_mb: 8000
+  torch_dtype: "float16"
+  trust_remote_code: false
+
+inference:
+  max_tokens: 512
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  do_sample: true
+  timeout_seconds: 10
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  log_level: "info"
+  reload: false
+
+cache:
+  transformers_cache: "./data/models"
+  quote_database_path: "src/reddwarf/quotes/quotes.json"
+
+monitoring:
+  enable_metrics: true
+  enable_structured_logs: true
+  log_inference_details: true

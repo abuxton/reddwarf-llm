@@ -1,0 +1,492 @@
+[
+  {
+    "id": 1,
+    "text": "Everybody's dead, Dave.",
+    "character": "Holly",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 2,
+    "text": "I'm going to eat you little fishie!",
+    "character": "Cat",
+    "episode": "Confidence and Paranoia",
+    "season": 1
+  },
+  {
+    "id": 3,
+    "text": "Smoke me a kipper, I'll be back for breakfast!",
+    "character": "Ace Rimmer",
+    "episode": "Dimension Jump",
+    "season": 4
+  },
+  {
+    "id": 4,
+    "text": "What a guy!",
+    "character": "Various",
+    "episode": "Dimension Jump",
+    "season": 4
+  },
+  {
+    "id": 5,
+    "text": "Smegging hell!",
+    "character": "Lister",
+    "episode": "Various",
+    "season": 1
+  },
+  {
+    "id": 6,
+    "text": "I'm not a god! I'm not a god!",
+    "character": "Lister",
+    "episode": "Waiting for God",
+    "season": 1
+  },
+  {
+    "id": 7,
+    "text": "So what is it? It's a small, off-duty Czechoslovakian traffic warden!",
+    "character": "Rimmer",
+    "episode": "Queeg",
+    "season": 2
+  },
+  {
+    "id": 8,
+    "text": "Gazpacho soup! I wanted it hot!",
+    "character": "Rimmer",
+    "episode": "Timeslides",
+    "season": 3
+  },
+  {
+    "id": 9,
+    "text": "I'm a fish!",
+    "character": "Lister",
+    "episode": "Backwards",
+    "season": 3
+  },
+  {
+    "id": 10,
+    "text": "Silicon heaven? Where would all the calculators go?",
+    "character": "Lister",
+    "episode": "The Last Day",
+    "season": 3
+  },
+  {
+    "id": 11,
+    "text": "Lister, have you ever been hit over the head with a welding mallet?",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 12,
+    "text": "No? Then shut up and push the trolley.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 13,
+    "text": "Yes, sir, Rimmer!",
+    "character": "Rimmer",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 14,
+    "text": "Lister, shut up!",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 15,
+    "text": "- I'm only humming! - Well, don't.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 16,
+    "text": "Lister, don't hum and don't make any stupid sounds with your cheeks.",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 17,
+    "text": "Lister, one more sound, anything, and you're on report, miladdo.",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 18,
+    "text": "What job number's this?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 19,
+    "text": "Right! That's it!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 20,
+    "text": "- Rimmer, I'm bored! - Bored?!",
+    "character": "Rimmer",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 21,
+    "text": "It's absolutely vital for the well-being of this crew, this mission and this ship.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 22,
+    "text": "Lister, is this a 14B?",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 23,
+    "text": "Does it look even remotely like a 14B?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 24,
+    "text": "This is a 14F. Are you blind?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 25,
+    "text": "- Who cares? - I care, Lister!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 26,
+    "text": "It's my career, Lister, I'm the one who gets it in the neck",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 27,
+    "text": "and gets blackcurrant cordial with blancmange, two creams and a sugar.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 28,
+    "text": "The only reason they don't give this job to the service robots",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 29,
+    "text": "Right. What's next?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 30,
+    "text": "Well, Lister, not for long, matey. Up, up, up! That's where I'm going!",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 31,
+    "text": "And you won't do that because you'll just go in there and flunk again.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 32,
+    "text": "Lister, last time I only failed by the \"narrowest\" of narrow margins.",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 33,
+    "text": "You what? You walked in there",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 34,
+    "text": "- That's a total lie! - No, it's not! Petersen told me.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 35,
+    "text": "\"No, it's not! Petersen told me.\"",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 36,
+    "text": "Lister, if you must know. What I did was, I wrote a discourse on porous circuits",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 37,
+    "text": "which was simply too \"radical\", too \"unconventional\",",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 38,
+    "text": "too \"mould-breaking\" for the examiners to accept!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 39,
+    "text": "- Is that a cigarette you're smoking, Lister? - No, it's a chicken.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 40,
+    "text": "Right! You're on report. Two times in as many minutes, Lister. I don't know!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 41,
+    "text": "Yo, Todhunter, get down!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 42,
+    "text": "Indeed. Now, Rimmer, I'm just going through McIntyre's artifacts,",
+    "character": "Rimmer",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 43,
+    "text": "and I see that you've filed 247 complaints... against Lister.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 44,
+    "text": "- Yes, sir! - That's 123 counts of \"insulting a superior technician\"",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 45,
+    "text": "- and one count of \"mutiny\". - Yes, sir!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 46,
+    "text": "- \"Mutiny\", Lister? - I stood on his toe.",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 47,
+    "text": "- Maliciously, and with intent to wound. - It was an accident!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 48,
+    "text": "Lister, I put it to you. How is it possible to stand on one small toe by accident?",
+    "character": "Lister",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 49,
+    "text": "You didn't stand on my toe at all, you stood on my entire foot,",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 50,
+    "text": "thereby obstructing a superior technician in pursuit of vital duty.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 51,
+    "text": "But the \"vital duty\" was him going to snap my guitar in half!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 52,
+    "text": "Whereupon you leapt from the top bunk onto the whole of my right foot.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 53,
+    "text": "- Alright, that's enough. - Had there been a crisis situation, Lister,",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 54,
+    "text": "clearly putting the ship at risk, clearly, therefore mutiny.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 55,
+    "text": "- Finished? - However, I'm not a vindictive man,",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 56,
+    "text": "You, Rimmer, are over one man. Why can't you two get on?",
+    "character": "Rimmer",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 57,
+    "text": "You, see I try, sir. I'm not an insubordinate man by nature.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 58,
+    "text": "I try to respect Rimmer and everything, but it's not easy.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 59,
+    "text": "Because he's such a smeghead.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 60,
+    "text": "Did you hear that, sir? Lister, do you have any conception",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 61,
+    "text": "of the penalty for describing a superior technician as a 'smeghead'?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 62,
+    "text": "Oh, Rimmer. You ARE a smeghead.",
+    "character": "Rimmer",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 63,
+    "text": "You heard that, Lister! With respect, sir,",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 64,
+    "text": "your career's over, Todhunter, you're finished you big lig!",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 65,
+    "text": "We're all gathered here today to pay our last respects to George McIntyre.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 66,
+    "text": "and as good a friend as anyone could ever hope to have,",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 67,
+    "text": "and he'll be missed more deeply and more completely than he could ever know.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 68,
+    "text": "I now commend his ashes to the stars he loved so much.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 69,
+    "text": "This is a piece of music he specially requested. Start the tape please, Holly?",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  },
+  {
+    "id": 70,
+    "text": "- #...so long! Goodbye! # - Bye George.",
+    "character": "Unknown",
+    "episode": "The End",
+    "season": 1
+  }
+]
