@@ -1,0 +1,50 @@
+{
+    "name": "reddwarf-llm",
+    "image": "mcr.microsoft.com/devcontainers/python:3.10",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.pylance",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "charliermarsh.ruff",
+                "github.copilot",
+                "github.copilot-chat"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "editor.formatOnSave": true,
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter",
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit"
+                    }
+                },
+                "chat.promptFilesRecommendations": {
+                    "speckit.constitution": true,
+                    "speckit.specify": true,
+                    "speckit.plan": true,
+                    "speckit.tasks": true,
+                    "speckit.implement": true
+                },
+                "chat.tools.terminal.autoApprove": {
+                    ".specify/scripts/bash/": true,
+                    ".specify/scripts/powershell/": true
+                }
+            }
+        }
+    },
+    "postCreateCommand": "pip install -e '.[dev]' && pre-commit install",
+    "forwardPorts": [8000],
+    "portsAttributes": {
+        "8000": {
+            "label": "FastAPI Server",
+            "onAutoForward": "notify"
+        }
+    },
+    "remoteUser": "vscode"
+}
